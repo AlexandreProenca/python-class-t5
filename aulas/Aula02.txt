@@ -1,0 +1,10 @@
+Comandos basicos do Git
+
+Importante! os comandos devem ser digitados no diretório GIT
+
+git clone          # baixa o repositorio da origem
+
+# entra no diretório 
+	git add    #adiciona o arquivo no stage
+	git commit # salva um ponto no tempo
+	git push   # envia as modificações
