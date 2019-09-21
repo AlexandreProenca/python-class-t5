@@ -18,7 +18,7 @@ print(f"A média aritimética das notas do {aluno} é: {media}")
 
 if media < 3:
     print(f"{aluno} reprovou")
-elif media < 7:
+elif 3 < media < 7:
     print(f"{aluno} está em recuperacao")
     var_rec = int(input('Digite a nota da recuperacao: '))
     media_rec = (media + var_rec)/2
