@@ -1,6 +1,6 @@
-var_1 = int(input("Digite a 1º nota: "))
-var_2 = int(input("Digite a 2º nota: "))
-var_3 = int(input("Digite a 3º nota: "))
+var_1 = int(input("Digite o 1º valor: "))
+var_2 = int(input("Digite o 2º valor: "))
+var_3 = int(input("Digite o 3º valor: "))
 
 if var_1 > var_2:
     if var_1 > var_3:
