@@ -37,6 +37,11 @@ Alunos:
 - Pedro Henrique
 - Sandro Saggiorato
 
+Slack
+---------
+https://jcavi-python5.slack.com
+
+
 Atividades
 ----------
 
