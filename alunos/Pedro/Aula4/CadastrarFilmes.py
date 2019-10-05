@@ -1,4 +1,4 @@
-dict_filme = dict()
+dict_movie = dict()
 print("""
         1) Cadastrar novo filme
         2) Listar filmes
@@ -10,81 +10,81 @@ print("""
         8) Sair""")
 
 while True:
-    comando = int(input("\nDigite a ação desejada: "))
-    if comando == 1:
-        nome_filme = input("Digite o nome do filme: ")
-        qtd_filme = int(float(input("Digite a quantidade de filmes: ")))
-        valor_filme = float(input("Digite o valor da diária [R$]: "))
-        ano_filme = int(float(input("Digite o ano do filme: ")))
-        dict_filme[nome_filme] = dict(title=nome_filme,
-                                      qtd=qtd_filme,
-                                      valor=valor_filme,
-                                      ano=ano_filme)
-    elif comando == 2:
-        for filme in dict_filme:
-            print(filme)
-    elif comando == 3:
-        nome_filme = input("Digite o filme cujas informacoes serao exibidas: ")
-        print(dict_filme[nome_filme])
-    elif comando == 4:
-        nome_filme = input("Digite o filme cujas informacoes serao atualizadas: ")
+    command = int(input("\nDigite a ação desejada: "))
+    if command == 1:
+        name_movie = input("Digite o nome do filme: ")
+        qtd_movie = int(float(input("Digite a quantidade de filmes: ")))
+        value_movie = float(input("Digite o valor da diária [R$]: "))
+        year_movie = int(float(input("Digite o ano do filme: ")))
+        dict_movie[name_movie] = dict(title=name_movie,
+                                      qtd=qtd_movie,
+                                      valor=value_movie,
+                                      ano=year_movie)
+    elif command == 2:
+        for movie in dict_movie:
+            print(movie)
+    elif command == 3:
+        name_movie = input("Digite o filme cujas informacoes serao exibidas: ")
+        print(dict_movie[name_movie])
+    elif command == 4:
+        name_movie = input("Digite o filme cujas informacoes serao atualizadas: ")
         print("""                1) Quantidade
                 2) Valor da diaria [R$]
                 3) Ano do filme""")
-        atualizar = int(input("Digite a qual informaca voce deseja atualizar: "))
-        info_atualizada = float(input("Digite para qual valor essa informacao sera atualizada: "))
-        if atualizar == 1:
-            dict_filme[nome_filme]["qtd"] = int(info_atualizada)
-        elif atualizar == 2:
-            dict_filme[nome_filme]["valor"] = info_atualizada
-        elif atualizar == 3:
-            dict_filme[nome_filme]["ano"] = int(info_atualizada)
+        command_att = int(input("Digite a qual informaca voce deseja atualizar: "))
+        info_att = float(input("Digite para qual valor essa informacao sera atualizada: "))
+        if command_att == 1:
+            dict_movie[name_movie]["qtd"] = int(info_att)
+        elif command_att == 2:
+            dict_movie[name_movie]["valor"] = info_att
+        elif command_att == 3:
+            dict_movie[name_movie]["ano"] = int(info_att)
         else:
             print("Opcao invalida")
-    elif comando == 5:
-        nome_filme = input("Digite o nome do filme a ser deletado: ")
+    elif command == 5:
+        name_movie = input("Digite o nome do filme a ser deletado: ")
 
         flag = 0
-        for filme in dict_filme:
-            if nome_filme == filme:
+        for movie in dict_movie:
+            if name_movie == movie:
                 flag = 1
 
         if flag:
-            del dict_filme[nome_filme]
+            del dict_movie[name_movie]
         else:
             print("Filme nao cadastrado.")
-    elif comando == 6:
-        nome_filme = input("Digite o nome do filme a ser emprestados: ")
+    elif command == 6:
+        name_movie = input("Digite o nome do filme a ser emprestados: ")
 
         flag = 0
-        for filme in dict_filme:
-            if nome_filme == filme:
+        for movie in dict_movie:
+            if name_movie == movie:
                 flag = 1
 
         if flag:
-            qtd_emprestimo = int(input("Digite a quantidade a ser emprestada: "))
-            while qtd_emprestimo > dict_filme[nome_filme]["qtd"]:
-                qtd_emprestimo = int(input("Quantidade insuficiente em estoque, digite outro valor: "))
-            dict_filme[nome_filme]["qtd"] -= qtd_emprestimo
+            qtd_borrow = int(input("Digite a quantidade a ser emprestada: "))
+            while qtd_borrow > dict_movie[name_movie]["qtd"]:
+                qtd_borrow = int(input("Quantidade insuficiente em estoque, digite outro valor: "))
+            dict_movie[name_movie]["qtd"] -= qtd_borrow
         else:
             print("Filme nao cadastrado, favor cadastrar o filme primeiro")
-    elif comando == 7:
-        nome_filme = input("Digite o nome do filme a ser devolvido: ")
+    elif command == 7:
+        name_movie = input("Digite o nome do filme a ser devolvido: ")
 
         flag = 0
-        for filme in dict_filme:
-            if nome_filme == filme:
+        for movie in dict_movie:
+            if name_movie == movie:
                 flag = 1
 
         if flag:
-            qtd_devolucao = int(input("Digite a quantidade de filmes a serem devolvidos: "))
-            numero_dias = int(input("Digite a quantidade de dias que o filme ficou alugado: "))
-            dict_filme[nome_filme]["qtd"] += qtd_devolucao
-            valor_devolucao = dict_filme[nome_filme]["valor"] * numero_dias * qtd_devolucao
-            print(f"Custo de devolucao: R${valor_devolucao}")
+            qtd_return = int(input("Digite a quantidade de filmes a serem devolvidos: "))
+            num_days = int(input("Digite a quantidade de dias que o filme ficou alugado: "))
+            dict_movie[name_movie]["qtd"] += qtd_return
+            value_return = dict_movie[name_movie]["valor"] * num_days * qtd_return
+            print(f"Custo de devolucao: R${value_return}")
         else:
             print("Filme nao cadastrado, favor cadastrar o filme primeiro")
-    elif comando == 8:
+    elif command == 8:
         break
     else:
         print("Opcao invalida")
