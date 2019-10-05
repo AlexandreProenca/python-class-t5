@@ -8,7 +8,7 @@ for index in range(qtd_numeros):
 
 media = sum(lista_numeros)/qtd_numeros
 
-for numero in range(qtd_numeros):
+for numero in lista_numeros:
     lista_diff += [abs(numero - media)]
     dict_numeros[abs(numero - media)] = numero
 
