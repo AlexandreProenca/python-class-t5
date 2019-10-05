@@ -1,9 +1,10 @@
 dict_contato = dict()
-print("1) Cadastrar contato\n"
-      "2) Listar contatos\n"
-      "3) Mostrar um contato específico\n"
-      "4) Excluir um contato\n"
-      "5) Sair")
+print("""
+        1) Cadastrar contato
+        2) Listar contatos
+        3) Mostrar um contato específico
+        4) Excluir um contato
+        5) Sair""")
 
 while(True):
     comando = int(input("\nDigite a ação desejada: "))
