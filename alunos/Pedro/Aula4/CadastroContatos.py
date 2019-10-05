@@ -12,14 +12,14 @@ while(True):
         nome_contato = input("Digite o nome do contato a ser inserido: ")
         info_contato = input("Digite as informacoes do contato inserido: ")
         dict_contato[nome_contato] = info_contato
-    if comando == 2:
+    elif comando == 2:
         for contato in dict_contato:
             print(contato)
-    if comando == 3:
+    elif comando == 3:
         nome_contato = input("Digite o contato cujas informacoes serao exibidas: ")
         print(dict_contato[nome_contato])
-    if comando == 4:
+    elif comando == 4:
         nome_contato = input("Digite o nome do contato a ser deletado: ")
         del dict_contato[nome_contato]
-    if comando == 5:
+    elif comando == 5:
         break
