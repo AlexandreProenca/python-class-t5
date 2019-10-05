@@ -34,11 +34,11 @@ while True:
         atualizar = int(input("Digite a qual informaca voce deseja atualizar: "))
         info_atualizada = float(input("Digite para qual valor essa informacao sera atualizada: "))
         if atualizar == 1:
-            dict_filme[nome_filme].update({"qtd": int(info_atualizada)})
+            dict_filme[nome_filme]["qtd"] = int(info_atualizada)
         elif atualizar == 2:
-            dict_filme[nome_filme].update({"valor": info_atualizada})
+            dict_filme[nome_filme]["valor"] = info_atualizada
         elif atualizar == 3:
-            dict_filme[nome_filme].update({"ano": int(info_atualizada)})
+            dict_filme[nome_filme]["ano"] = int(info_atualizada)
         else:
             print("Opcao invalida")
     elif comando == 5:
@@ -65,9 +65,9 @@ while True:
             qtd_emprestimo = int(input("Digite a quantidade a ser emprestada: "))
             while qtd_emprestimo > dict_filme[nome_filme]["qtd"]:
                 qtd_emprestimo = int(input("Quantidade insuficiente em estoque, digite outro valor: "))
-            dict_filme[nome_filme].update({"qtd": dict_filme[nome_filme]["qtd"] - qtd_emprestimo})
+            dict_filme[nome_filme]["qtd"] -= qtd_emprestimo
         else:
-            print("Filme nao cadastrado, favor cadastrar o filme primeiro.")
+            print("Filme nao cadastrado, favor cadastrar o filme primeiro")
     elif comando == 7:
         nome_filme = input("Digite o nome do filme a ser devolvido: ")
 
@@ -77,12 +77,13 @@ while True:
                 flag = 1
 
         if flag:
+            qtd_devolucao = int(input("Digite a quantidade de filmes a serem devolvidos: "))
             numero_dias = int(input("Digite a quantidade de dias que o filme ficou alugado: "))
-            dict_filme[nome_filme].update({"qtd": dict_filme[nome_filme]["qtd"] + 1})
-            valor_devolucao = dict_filme[nome_filme]["valor"] * numero_dias
+            dict_filme[nome_filme]["qtd"] += qtd_devolucao
+            valor_devolucao = dict_filme[nome_filme]["valor"] * numero_dias * qtd_devolucao
             print(f"Custo de devolucao: R${valor_devolucao}")
         else:
-            print("Filme nao cadastrado, favor cadastrar o filme primeiro.")
+            print("Filme nao cadastrado, favor cadastrar o filme primeiro")
     elif comando == 8:
         break
     else:
