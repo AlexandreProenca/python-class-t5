@@ -6,7 +6,7 @@ print("1) Cadastrar contato\n"
       "5) Sair")
 
 while(True):
-    comando = int(input("\nDigite a ação que você queira: "))
+    comando = int(input("\nDigite a ação desejada: "))
     if comando == 1:
         nome_contato = input("Digite o nome do contato a ser inserido: ")
         info_contato = input("Digite as informacoes do contato inserido: ")
