@@ -14,7 +14,8 @@ def CheckBorrow(dict_names, verify):
         return 1
 
 
-dict_flow = dict(user=dict(movie={}))
+dict_flow = dict(user=dict(profile={},
+                           movie={}))
 dict_movie = dict()
 dict_user = dict()
 
@@ -107,6 +108,8 @@ while True:
         info_user = input("Digite o CPF do usuario: ")
         dict_user[name_user] = dict(nome=name_user,
                                     info=info_user)
+        dict_flow[name_user] = dict(profile=dict_user[name_user],
+                                    movie={})
     elif command == 11:
         for user in dict_user:
             print(user)
