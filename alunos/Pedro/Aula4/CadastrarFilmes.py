@@ -1,13 +1,20 @@
 def CheckElement(dict_names, verify):
-    flag = 0
     for x in dict_names:
         if x == verify:
-            flag = 1
-        if flag:
             return 1
-        else:
-            print(f"Elemento {verify} nao esta cadastrado, favor cadastrar primeiro")
+    else:
+        print(f"Elemento {verify} nao esta cadastrado, favor cadastrar primeiro")
 
+
+def CheckBorrow(dict_names, verify):
+    for x in dict_names:
+        if x['title'] == verify:
+            print(f"Usuario ja possui o filme {x['title']} alugado no ID {x['id']}")
+    else:
+        return 1
+
+
+dict_flow = dict(user=dict(movie={}))
 dict_movie = dict()
 dict_user = dict()
 
@@ -48,17 +55,17 @@ while True:
         name_movie = input("Digite o filme cujas informacoes serao atualizadas: ")
 
         if CheckElement(dict_movie, name_movie):
-            print("""                1) Quantidade
+            print("""                    1) Quantidade
                     2) Valor da diaria [R$]
                     3) Ano do filme""")
             command_att = int(input("Digite a qual informaca voce deseja atualizar: "))
             info_att = float(input("Digite para qual valor essa informacao sera atualizada: "))
             if command_att == 1:
-                dict_movie[name_movie]["qtd"] = int(info_att)
+                dict_movie[name_movie]['qtd'] = int(info_att)
             elif command_att == 2:
-                dict_movie[name_movie]["valor"] = info_att
+                dict_movie[name_movie]['valor'] = info_att
             elif command_att == 3:
-                dict_movie[name_movie]["ano"] = int(info_att)
+                dict_movie[name_movie]['ano'] = int(info_att)
             else:
                 print("Opcao invalida")
     elif command == 5:
@@ -70,35 +77,36 @@ while True:
         name_user = input("Digite o nome do usuario que ira emprestar: ")
         name_movie = input("Digite o nome do filme a ser emprestados: ")
 
-        if CheckElement(dict_user, name_user):
-            if dict_user[name_user]["qtd"] > 0:
-                print("Usuario ja possui filme alugado")
-            else:
-                if CheckElement(dict_movie, name_movie):
-                    qtd_borrow = int(input("Digite a quantidade a ser emprestada: "))
-                    day_borrow = int(input("Digite o dia da locao: "))
-                    while qtd_borrow > dict_movie[name_movie]["qtd"]:
-                        qtd_borrow = int(input("Quantidade insuficiente em estoque, digite outro valor: "))
-                    dict_movie[name_movie]["qtd"] -= qtd_borrow
-                    dict_user[name_user]["movie"] = name_movie
-                    dict_user[name_user]["qtd"] += qtd_borrow
-                    dict_user[name_user]["day_ini"] += day_borrow
+        if CheckElement(dict_user, name_user) and CheckElement(dict_movie, name_movie):
+            if CheckBorrow(dict_flow[name_user], name_movie):
+                day_borrow = int(input("Digite o dia da locacaoo: "))
+                qtd_borrow = int(input("Digite a quantidade a ser emprestada: "))
+                while qtd_borrow > dict_movie[name_movie]['qtd']:
+                    qtd_borrow = int(input("Quantidade insuficiente em estoque, digite outro valor: "))
+                from random import random
+                id_borrow = int(random()*10e7)
+                dict_movie[name_movie]['qtd'] -= qtd_borrow
+                dict_flow[name_user][id_borrow] = dict(id=id_borrow,
+                                                       title=name_movie,
+                                                       qtd=qtd_borrow,
+                                                       day=day_borrow)
+                print(f"Filme locado sob o ID de locacao {id_borrow}")
     elif command == 7:
         name_user = input("Digite o nome do usuario que ira devolver: ")
-
-        if CheckElement(dict_movie, dict_movie[name_user]["movie"]):
+        id_borrow = input("Digite o ID da locacao")
+        if CheckElement(dict_movie, dict_user[name_user]['id']):
             day_end = int(input("Digite o dia que o filme esta sendo devolvido: "))
-            dict_movie[dict_movie[name_user]["movie"]]["qtd"] += dict_user[name_user]["qtd"]
-            time_period = day_end - dict_user[name_user]["day_ini"]
-            value_return = dict_movie[dict_movie[name_user]["movie"]]["valor"] * dict_user[name_user]["qtd"] * time_period
-            dict_user[name_user].update({"qtd": 0, "day_ini": 0})
+            time_period = day_end - dict_flow[name_user][id_borrow]['day_ini']
+            qtd_borrow = dict_flow[name_user][id_borrow]['qtd']
+            dict_movie[dict_user[name_user]['movie']]['qtd'] += qtd_borrow
+            value_return = dict_movie[dict_user[name_user]['movie']]['valor'] * qtd_borrow * time_period
+            del dict_user[name_user][id_borrow]
             print(f"Custo de devolucao: R$ {value_return:.2f}")
     elif command == 10:
         name_user = input("Digite o nome do usuario: ")
+        info_user = input("Digite o CPF do usuario: ")
         dict_user[name_user] = dict(nome=name_user,
-                                    movie=None,
-                                    qtd=0,
-                                    day_ini=0)
+                                    info=info_user)
     elif command == 11:
         for user in dict_user:
             print(user)
