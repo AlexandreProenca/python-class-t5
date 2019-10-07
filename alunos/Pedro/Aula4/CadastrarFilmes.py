@@ -41,7 +41,7 @@ while True:
     command = int(input("\nDigite a ação desejada: "))
     if command == 1:
         name_movie = input("Digite o nome do filme: ")
-        if CheckElement(dict_movie, name_movie):
+        if not(CheckElement(dict_movie, name_movie)):
             qtd_movie = int(float(input("Digite a quantidade de filmes: ")))
             value_movie = float(input("Digite o valor da diária [R$]: "))
             year_movie = int(float(input("Digite o ano do filme: ")))
@@ -114,7 +114,7 @@ while True:
             print(f"Custo de devolucao: R$ {value_return:.2f}")
     elif command == 10:
         name_user = input("Digite o nome do usuario: ")
-        if CheckElement(dict_user, name_user):
+        if not(CheckElement(dict_user, name_user)):
             info_user = input("Digite o CPF do usuario: ")
             dict_user[name_user] = dict(name=name_user,
                                         info=info_user,
