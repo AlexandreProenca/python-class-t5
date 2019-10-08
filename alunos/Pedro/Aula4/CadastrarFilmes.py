@@ -49,6 +49,8 @@ while True:
                                           qtd=qtd_movie,
                                           valor=value_movie,
                                           ano=year_movie)
+        else:
+            print(f"Filme {name_movie} ja cadastrado")
     elif command == 2:
         for movie in dict_movie:
             print(movie)
@@ -119,6 +121,8 @@ while True:
             dict_user[name_user] = dict(name=name_user,
                                         info=info_user,
                                         borrow=[])
+        else:
+            print(f"Usuario {name_user} ja cadastrado")
     elif command == 11:
         for user in dict_user:
             print(user)
