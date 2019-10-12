@@ -7,4 +7,3 @@ def MediaHarmonicaDeTupla(*numbers):
 
 media_harm = MediaHarmonicaDeTupla(1, 2, 3, 4, 5)
 print(media_harm)
-
