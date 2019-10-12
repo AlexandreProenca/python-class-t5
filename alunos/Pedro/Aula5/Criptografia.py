@@ -2,6 +2,7 @@ import string
 alphabet = string.ascii_letters
 alphabet_tratado = alphabet + "1" + "2" + "3"
 
+
 def EncriptarCifraDeCesar1(string):
     crypt = ""
     for ch in string:
