@@ -1,0 +1,35 @@
+inicio
+recebe n1
+recebe n2
+se n1=n2,
+n1 e n2 são iguais
+senao
+n1 e n2 são diferentes
+fim
+
+inicio
+recebe n1
+se 250>=n1 e n1>=150,
+n1 se encontra na faixa de 150 a 250
+senao,
+numero nao se encontra na faixa de 150 a 250
+fim
+
+inicio
+escreva uma frase
+contagem de caracteres da frase
+se contagem >10 e contagem <20, entao
+frase tem mais que 10 caracteres e menos de 20,
+senao
+frase não esta na faixa de caracteres estipulada
+fim
+
+
+inicio,
+recebe valor1
+recebe valor2
+recebe valor3
+recebe valor4
+recebe valor5
+se (not(valor1 = valor3 ou valor1<valor2) e (valor1<valor4 ou valor1>valor5))
+fim
