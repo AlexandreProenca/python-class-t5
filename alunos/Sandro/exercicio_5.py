@@ -21,24 +21,29 @@ while(option != 6):
             Tecle 1 - Cadastrar cliente
             Tecle 2 - inserir deposito
             Tecle 3 - registrar saque
-            Tecle 4 Consultar saldo
-            tecle 5 para alterar cliente
-            tecle 6 para sair""")
+            Tecle 4 - Consultar saldo
+            tecle 5 - para alterar cliente
+            tecle 6 - para sair""")
     option = int(input("Digite sua opção"))
     if option == 1:
         nome = input("Digite o nome do cliente.")
         banco[numero_automatico] = ContaCorrente(numero=numero_automatico, nome=nome, saldo=0)
         print(f"Sua conta é o número {banco[numero_automatico].n}")
+        conta = numero_automatico
         numero_automatico += 1
     elif option == 2:
         conta = int(input("Digite a conta do cliente."))
-        deposito = float(input(f"Digite o valor do deposito de {conta.i}."))
-        conta.s = cc(s + deposito)
+        deposito = float(input(f"Digite o valor do deposito de {banco[conta].i}."))
+        banco[conta].s += deposito
     elif option == 3:
-            conta.n = input("Digite a conta do cliente.")
-            deposito = float(input(f"Digite o valor do saque de {conta.i}."))
-            cconta.s = cconta.s - deposito
+        conta = int(input("Digite a conta do cliente."))
+        deposito = float(input(f"Digite o valor de saque de {banco[conta].i}."))
+        banco[conta].s -= deposito
     elif option == 4:
-            cconta.i = input("Digite a conta do cliente.")
-            print(f"o cliente {cconta.i} possue R$ {cconta.s} de saldo bancario.")
-    banco[numero_automatico-1].info()
+            conta = int(input("Digite a conta do cliente."))
+            banco[conta].info()
+    elif option == 5:
+            conta = int(input("Digite a conta do cliente."))
+            nome_alt = (input("Digite o nome correto do cliente."))
+            banco[conta].i = nome_alt
+    banco[conta].info()
