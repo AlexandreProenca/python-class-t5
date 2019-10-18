@@ -11,6 +11,7 @@ class ContaCorrente:
         print(f"As informacomacoes da conta sao: {self.i} : {self.n} e {self.s}")
 
 
+
 option = 0
 banco = {}
 numero_automatico = 1000
