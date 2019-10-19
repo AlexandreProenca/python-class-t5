@@ -17,9 +17,14 @@ def CheckBorrow(flows, users, verify_user, verify_title):
         return 1
 
 
-dict_flow = dict()
-dict_movie = dict()
-dict_user = dict()
+with open("DB.txt", "r") as file:
+    lines = file.readlines()
+
+import json
+
+dict_flow = json.loads(lines[0])
+dict_user = json.loads(lines[1])
+dict_movie = json.loads(lines[2])
 
 print("""
         1) Cadastrar novo filme
@@ -43,7 +48,7 @@ try:
         command = int(input("\nDigite a ação desejada: "))
         if command == 1:
             name_movie = input("Digite o nome do filme: ")
-            if not(CheckElement(dict_movie, name_movie)):
+            if not (CheckElement(dict_movie, name_movie)):
                 qtd_movie = int(float(input("Digite a quantidade de filmes: ")))
                 value_movie = float(input("Digite o valor da diária [R$]: "))
                 year_movie = int(float(input("Digite o ano do filme: ")))
@@ -117,7 +122,7 @@ try:
                 print(f"Custo de devolucao: R$ {value_return:.2f}")
         elif command == 10:
             name_user = input("Digite o nome do usuario: ")
-            if not(CheckElement(dict_user, name_user)):
+            if not (CheckElement(dict_user, name_user)):
                 info_user = input("Digite o CPF do usuario: ")
                 dict_user[name_user] = dict(name=name_user,
                                             info=info_user,
@@ -134,9 +139,18 @@ try:
             print(dict_flow)
         elif command == 99:
             break
-        elif command > 99:
-            raise OverflowError(f"Command maior que 99: {command}")
+        elif command > 990:
+            raise OverflowError(f"Command maior que 999: {command}")
         else:
             print("Opcao invalida")
 except KeyboardInterrupt:
     print("Código interrompido via teclado")
+except Exception:
+    print("Comando invalido")
+
+json_flow = json.dumps(dict_flow)
+json_user = json.dumps(dict_user)
+json_movie = json.dumps(dict_movie)
+
+with open("DB.txt", "w") as file:
+    file.write(f"{json_flow}\n{json_user}\n{json_movie}\n")
