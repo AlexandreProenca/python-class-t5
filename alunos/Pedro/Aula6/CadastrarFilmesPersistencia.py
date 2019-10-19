@@ -17,14 +17,23 @@ def CheckBorrow(flows, users, verify_user, verify_title):
         return 1
 
 
-with open("DB.txt", "r") as file:
-    lines = file.readlines()
+try:
+    with open("DB.txt", "r") as file:
+        lines_DB = file.readlines()
+except FileNotFoundError:
+    lines_DB = []
+    print("Não há base de dados, iniciando com valores nulos")
 
 import json
 
-dict_flow = json.loads(lines[0])
-dict_user = json.loads(lines[1])
-dict_movie = json.loads(lines[2])
+if lines_DB:
+    dict_flow = json.loads(lines_DB[0])
+    dict_user = json.loads(lines_DB[1])
+    dict_movie = json.loads(lines_DB[2])
+else:
+    dict_flow = {}
+    dict_user = {}
+    dict_movie = {}
 
 print("""
         1) Cadastrar novo filme
@@ -41,7 +50,8 @@ print("""
 
         20) Informacoes do fluxo de locacoes
 
-        99) Sair""")
+        99) Sair e salvar
+        999) Sair sem salvar""")
 
 try:
     while True:
@@ -140,7 +150,7 @@ try:
         elif command == 99:
             break
         elif command > 990:
-            raise OverflowError(f"Command maior que 999: {command}")
+            raise OverflowError(f"Command maior que 999: {command}, a base de dados não será salva")
         else:
             print("Opcao invalida")
 except KeyboardInterrupt:
