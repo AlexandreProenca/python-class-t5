@@ -81,12 +81,18 @@ class MonteCarloEngineSimulator:
 
 
 # prepare the data
-configuration = Configuration(1000, 1)  # config
-trade = OptionTrade(200, 220, 0.15, 0.1, 1)  # trade
-model = GBMModel(configuration)
-tradePricer = OptionTradePayoffPricer()
-simulator = MonteCarloEngineSimulator(configuration, model)
+def main():
+    configuration = Configuration(100, 1)  # config
+    trade = OptionTrade(200, 220, 0.15, 0.1, 1)  # trade
+    model = GBMModel(configuration)
+    tradePricer = OptionTradePayoffPricer()
+    simulator = MonteCarloEngineSimulator(configuration, model)
 
-# simulate price
-price = simulator.Simulate(trade, tradePricer)
-print(price)
+    # simulate price
+    price = simulator.Simulate(trade, tradePricer)
+    print(price)
+
+
+# aproach para executar o main quando é chamado via comand line
+if __name__ == '__main__':
+    main()
