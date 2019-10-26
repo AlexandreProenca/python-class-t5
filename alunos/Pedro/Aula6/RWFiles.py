@@ -1,3 +1,16 @@
-with open("teste.svg", "rb") as file:
-    print(file.read())
+with open("teste.txt", "r") as file:
+    line = file.readline()
+    while line != '':
+        # print(line, end='')
+        line = file.readline()
 
+
+with open("teste.txt", "rb") as file:
+    lines = file.readlines()
+    for line in lines:
+        print(line, end='\n')
+
+print(lines[1], "----------")
+
+with open("escrita.txt", "a") as file:
+    file.write("Pedro\nSandro\n")

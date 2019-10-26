@@ -17,9 +17,23 @@ def CheckBorrow(flows, users, verify_user, verify_title):
         return 1
 
 
-dict_flow = dict()
-dict_movie = dict()
-dict_user = dict()
+try:
+    with open("DB.txt", "r") as file:
+        lines_DB = file.readlines()
+except FileNotFoundError:
+    lines_DB = []
+    print("Não há base de dados, iniciando com valores nulos")
+
+import json
+
+if lines_DB:
+    dict_flow = json.loads(lines_DB[0])
+    dict_user = json.loads(lines_DB[1])
+    dict_movie = json.loads(lines_DB[2])
+else:
+    dict_flow = {}
+    dict_user = {}
+    dict_movie = {}
 
 print("""
         1) Cadastrar novo filme
@@ -36,14 +50,15 @@ print("""
 
         20) Informacoes do fluxo de locacoes
 
-        99) Sair""")
+        99) Sair e salvar
+        999) Sair sem salvar""")
 
 try:
     while True:
         command = int(input("\nDigite a ação desejada: "))
         if command == 1:
             name_movie = input("Digite o nome do filme: ")
-            if not(CheckElement(dict_movie, name_movie)):
+            if not (CheckElement(dict_movie, name_movie)):
                 qtd_movie = int(float(input("Digite a quantidade de filmes: ")))
                 value_movie = float(input("Digite o valor da diária [R$]: "))
                 year_movie = int(float(input("Digite o ano do filme: ")))
@@ -117,7 +132,7 @@ try:
                 print(f"Custo de devolucao: R$ {value_return:.2f}")
         elif command == 10:
             name_user = input("Digite o nome do usuario: ")
-            if not(CheckElement(dict_user, name_user)):
+            if not (CheckElement(dict_user, name_user)):
                 info_user = input("Digite o CPF do usuario: ")
                 dict_user[name_user] = dict(name=name_user,
                                             info=info_user,
@@ -134,9 +149,18 @@ try:
             print(dict_flow)
         elif command == 99:
             break
-        elif command > 99:
-            raise OverflowError(f"Command maior que 99: {command}")
+        elif command > 990:
+            raise OverflowError(f"Command maior que 999: {command}, a base de dados não será salva")
         else:
             print("Opcao invalida")
 except KeyboardInterrupt:
     print("Código interrompido via teclado")
+except Exception:
+    print("Comando invalido")
+
+json_flow = json.dumps(dict_flow)
+json_user = json.dumps(dict_user)
+json_movie = json.dumps(dict_movie)
+
+with open("DB.txt", "w") as file:
+    file.write(f"{json_flow}\n{json_user}\n{json_movie}\n")
