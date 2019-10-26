@@ -1,28 +1,10 @@
-#Crie uma classe para implementar uma conta corrente. A classe deve possuir os seguintes atributos: número da conta,
-# nome do correntista e saldo. Os métodos são os seguintes: alterarNome, depósito e saque; No construtor, saldo é opcional,
-# com valor default zero e os demais atributos são obrigatórios.
 import json
-class ContaCorrente:
-    def __init__(self, numero, nome, saldo):
-        self.numero = int(numero)
-        self.nome = nome
-        self.saldo = float(saldo)
+from modulo import ContaCorrente
 
-    def info(self):
-        print(f"As informacomacoes da conta sao: {self.nome} : {self.numero} e {self.saldo}")
 
 numero_automatico = 1000
 option = 0
 banco = {}
-with open("C:/Users/RS5891/PycharmProjects/python-t5/alunos/Sandro/aula_6/banco.txt", 'r') as reader:
-
-    base_dados = reader.readlines()
-    for b in base_dados:
-        d = json.loads(b)
-        c = ContaCorrente(**d)
-        banco[c.numero] = c
-        numero_automatico = c.numero+1
-
 
 while(option != 6):
     deposito = float(0)
@@ -84,3 +66,12 @@ while(option != 6):
 for i in banco.keys():
     with open("C:/Users/RS5891/PycharmProjects/python-t5/alunos/Sandro/aula_6/banco.txt", 'a') as reader:
         reader.write(json.dumps(banco[i].__dict__))
+
+with open("C:/Users/RS5891/PycharmProjects/python-t5/alunos/Sandro/aula_6/banco.txt", 'r') as reader:
+
+    base_dados = reader.readlines()
+    for b in base_dados:
+        d = json.loads(b)
+        c = ContaCorrente(**d)
+        banco[c.numero] = c
+        numero_automatico = c.numero+1
