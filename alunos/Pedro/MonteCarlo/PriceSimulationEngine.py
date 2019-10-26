@@ -82,7 +82,7 @@ class MonteCarloEngineSimulator:
 
 # prepare the data
 def main():
-    configuration = Configuration(100, 1)  # config
+    configuration = Configuration(10, 1)  # config
     trade = OptionTrade(200, 220, 0.15, 0.1, 1)  # trade
     model = GBMModel(configuration)
     tradePricer = OptionTradePayoffPricer()
