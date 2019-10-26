@@ -1,13 +1,12 @@
-with open("c:/Users/RS5891/Documents/Prevs_VE.prv", 'r') as file:
-    line = file.readlines()
-    while line != '':
-        print(line, end="")
-        for l in line:
-            print(l)
-        line = file.readline()
+with open("c:/Users/RS5891/Documents/Prevs_VE.prv", 'r') as reader:
+    file = reader.readlines()
+
+with open("copia.txt",'w') as writer:
+    for line_ap in (file):
+        writer.write(line_ap)
 
 
-    print(line)
+
 
 
 #   print(reader.read())
